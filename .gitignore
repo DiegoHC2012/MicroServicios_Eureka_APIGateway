@@ -1,0 +1,33 @@
+apigateway/HELP.md
+apigateway/target/
+apigateway/.mvn/wrapper/maven-wrapper.jar
+!apigateway/**/src/main/**/target/
+!apigateway/**/src/test/**/target/
+
+### STS ###
+apigateway/.apt_generated
+apigateway/.classpath
+apigateway/.factorypath
+apigateway/.project
+apigateway/.settings
+apigateway/.springBeans
+apigateway/.sts4-cache
+
+### IntelliJ IDEA ###
+apigateway/.idea
+apigateway/*.iws
+apigateway/*.iml
+apigateway/*.ipr
+
+### NetBeans ###
+apigateway/nbproject/private/
+apigateway/nbbuild/
+apigateway/dist/
+apigateway/nbdist/
+apigateway/.nb-gradle/
+apigateway/build/
+!apigateway/**/src/main/**/build/
+!apigateway/**/src/test/**/build/
+
+### VS Code ###
+apigateway/.vscode/
