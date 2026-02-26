@@ -1,13 +1,23 @@
- #Use an official OpenJDK runtime as a parent image
+# Etapa 1: compilar
+FROM eclipse-temurin:21-jdk-alpine AS build
+
+WORKDIR /app
+
+COPY pom.xml .
+COPY mvnw .
+COPY .mvn .mvn
+
+RUN chmod +x mvnw && ./mvnw dependency:go-offline -B
+
+COPY src src
+
+RUN ./mvnw clean package -DskipTests
+
+# Etapa 2: imagen final
 FROM eclipse-temurin:21-jre-alpine
 
+WORKDIR /app
 
- #Copy the JAR file to the container
-COPY target/escuela_modelo-0.0.1-SNAPSHOT.jar escuela_modelo-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/escuela_modelo-0.0.1-SNAPSHOT.jar app.jar
 
- #Run the application
-ENTRYPOINT [ "java","-jar","escuela_modelo-0.0.1-SNAPSHOT.jar" ]
-
-
- #Imagen con JDK (necesario para mvn)
-
+ENTRYPOINT ["java", "-jar", "app.jar"]
